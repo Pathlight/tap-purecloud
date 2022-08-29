@@ -23,6 +23,9 @@ import PureCloudPlatformApiSdk
 import PureCloudPlatformClientV2
 
 import tap_purecloud.schemas as schemas
+from tap_purecloud.streams import STREAMS
+from tap_purecloud.sync import sync_stream
+from tap_purecloud.util import FakeBody
 import tap_purecloud.websocket_helper
 import time
 
@@ -86,12 +89,6 @@ def get_access_token(config):
         raise RuntimeError("Unauthorized")
 
 
-class FakeBody(object):
-    def __init__(self, page_number=1, page_size=100):
-        self.page_number = page_number
-        self.page_size = page_size
-
-
 @backoff.on_exception(backoff.constant,
                       (PureCloudPlatformApiSdk.rest.ApiException),
                       jitter=backoff.random_jitter,
@@ -105,6 +102,7 @@ def fetch_one_page(get_records, body, entity_name, api_function_params):
         response = get_records(page_size=body.page_size, page_number=body.page_number, **api_function_params)
     elif hasattr(body, 'page_size'):
         logger.info("Fetching {} records from page {}".format(body.page_size, body.page_number))
+        print(get_records, body, api_function_params)
         response = get_records(body, **api_function_params)
     elif hasattr(body, 'paging'):
         logger.info("Fetching {} records from page {}".format(body.paging['pageSize'], body.paging['pageNumber']))
@@ -635,7 +633,7 @@ def do_sync(args):
     PureCloudPlatformClientV2.configuration.host = api_host
     PureCloudPlatformClientV2.configuration.access_token = access_token
 
-    sync_users(config)
+    # sync_users(config)
     sync_groups(config)
     sync_locations(config)
     sync_presence_definitions(config)
@@ -700,6 +698,61 @@ def discover():
 def stream_is_selected(mdata):
     return mdata.get((), {}).get('selected', False)
 
+
+def sync(config: dict, state: dict, catalog: dict):
+    """ Sync data from tap source """
+
+    logger.info("Getting access token")
+    access_token = get_access_token(config)
+
+    api_host = 'https://api.{domain}'.format(domain=config['domain'])
+    PureCloudPlatformApiSdk.configuration.host = api_host
+    PureCloudPlatformApiSdk.configuration.access_token = access_token
+
+    PureCloudPlatformClientV2.configuration.host = api_host
+    PureCloudPlatformClientV2.configuration.access_token = access_token
+
+    for stream in catalog.streams:
+        stream_name = stream.tap_stream_id
+        mdata = metadata.to_map(stream.metadata)
+        if not stream_is_selected(mdata):
+            logger.info(f"{stream_name}: Skipping - not selected")
+            continue
+
+        logger.info(f"Syncing stream: {stream_name}")
+
+        bookmark_column = stream.replication_key
+        is_sorted = True  # TODO: indicate whether data is sorted ascending on bookmark value
+        singer.write_schema(
+            stream_name=stream_name,
+            schema=stream.schema.to_dict(),
+            key_properties=stream.key_properties,
+        )
+
+        instance = STREAMS[stream_name](PureCloudPlatformClientV2, PureCloudPlatformApiSdk, config, stream)
+
+        if 'start_date' in state:
+            start_date = parse_to_date(state['start_date'])
+        else:
+            start_date = parse_to_date(config['start_date'])
+        counter_value = sync_stream(state, start_date, instance)
+
+        if instance.replication_method == "INCREMENTAL":
+            # Serialize unserializable types as str by default
+            # Deserialize back with converted types
+            json_string = json.dumps(state, default=str)
+            deserialized_state = json.loads(json_string)
+            logger.info("Here's the deserialzed", deserialized_state)
+            singer.write_state(deserialized_state)
+
+        logger.info(f"{stream_name}: Completed sync ({counter_value} rows)")
+
+    json_string = json.dumps(state, default=str)
+    deserialized_state = json.loads(json_string)
+    singer.write_state(deserialized_state)
+    logger.info("Finished sync")
+
+
 @utils.handle_top_exception(logger)
 def main():
     parsed_args = singer.utils.parse_args(REQUIRED_CONFIG_KEYS)
@@ -708,7 +761,8 @@ def main():
         catalog = discover()
         catalog.dump()
     else:
-        do_sync(parsed_args)
+        sync(parsed_args.config, parsed_args.state, parsed_args.catalog)
+        # do_sync(parsed_args)
 
 if __name__ == '__main__':
     main()
