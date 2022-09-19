@@ -18,6 +18,9 @@
             "type": "string",
             "format": "date-time"
         },
+        "management_unit_id": {
+            "type": "string"
+        },
         "length_in_minutes": {
             "type": "number"
         },

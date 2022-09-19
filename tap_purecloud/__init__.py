@@ -372,6 +372,7 @@ def sync_user_schedules(api_instance: WorkforceManagementApi, config, unit_id, u
             user_schedule_ = handle_object(user_schedule)
             user_schedule_["user_id"] = user_id
             user_schedule_["start_date"] = start_date_s
+            user_schedule_["management_unit_id"] = unit_id
 
             shifts = user_schedule_.pop('shifts')
             singer.write_record('user_schedule', user_schedule_)
@@ -379,6 +380,7 @@ def sync_user_schedules(api_instance: WorkforceManagementApi, config, unit_id, u
                 shift_id = shift["id"]
                 shift_week_schedule_id = shift["week_schedule"]["id"]
                 shift["user_id"] = user_id
+                shift["management_unit_id"] = unit_id
 
                 activities = shift.pop('activities')
                 singer.write_record('user_schedule_shift', shift)
@@ -386,6 +388,8 @@ def sync_user_schedules(api_instance: WorkforceManagementApi, config, unit_id, u
                     activity["week_schedule_id"] = shift_week_schedule_id
                     activity["shift_id"] = shift_id
                     activity["user_id"] = user_id
+                    activity["management_unit_id"] = unit_id
+
                     singer.write_record('user_schedule_shift_activity', activity)
 
         if len(schedule_by_user) == count_no_shifts:

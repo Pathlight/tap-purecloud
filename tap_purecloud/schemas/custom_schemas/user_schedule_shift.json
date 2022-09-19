@@ -27,6 +27,9 @@
             "format": "date-time",
             "description": "date for the shift"
         },
+        "management_unit_id": {
+            "type": "string"
+        },
         "delete": {
             "type": ["boolean", "null"]
         },

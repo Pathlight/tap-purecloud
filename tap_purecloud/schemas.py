@@ -417,6 +417,9 @@ user_schedule = {
             'format': 'date-time',
             'description': 'date for the sync',
         },
+        "management_unit_id": {
+            "type": "string"
+        },
         "metadata": {
             "type": ["object", "null"],
             "properties": {
@@ -484,6 +487,9 @@ user_schedule_shift = {
             'format': 'date-time',
             'description': 'date for the shift',
         },
+        "management_unit_id": {
+            "type": "string"
+        },
         "delete": {
             "type": ["boolean", "null"]
         },
@@ -512,6 +518,9 @@ user_schedule_shift_activity = {
         "start_date": {
             "type": "string",
             "format": "date-time",
+        },
+        "management_unit_id": {
+            "type": "string"
         },
         "length_in_minutes": {
             "type": "number"

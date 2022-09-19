@@ -9,29 +9,43 @@
             "format": "date-time",
             "description": "date for the sync"
         },
-        "shifts": {
-            "type": ["array", "null"],
-            "items": {
-                "type": "object",
-                "properties": {
-                    "start_date": {
-                        "type": ["string", "null"],
-                        "format": "date-time",
-                        "description": "date for the shift"
-                    },
-                    "activities": {
-                        "type": ["array", "null"],
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "activity_code_id": {
-                                    "type": "string"
-                                }
-                            }
+        "management_unit_id": {
+            "type": "string"
+        },
+        "metadata": {
+            "type": ["object", "null"],
+            "properties": {
+                "version": {
+                    "type": "number"
+                },
+                "modified_by": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
                         }
                     }
+                },
+                "date_modified": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "created_by": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "date_created": {
+                    "type": "string",
+                    "format": "date-time"
                 }
             }
+        },
+        "work_plan_id": {
+            "type": ["string", "null"]
         }
     }
 }
