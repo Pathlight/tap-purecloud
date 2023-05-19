@@ -775,7 +775,7 @@ def do_sync(args):
         elif stream_name == 'management_unit':
             sync_management_units(api_client, config, stream.schema.to_dict())
         elif stream_name == 'conversation':
-            sync_conversations(api_client, stream.schema.to_dict())
+            sync_conversations(api_client, config, stream.schema.to_dict())
         elif stream_name == 'user_state':
             sync_user_state(api_client, config, stream.schema.to_dict())
 
