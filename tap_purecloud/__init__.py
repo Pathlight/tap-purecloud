@@ -759,9 +759,9 @@ def do_sync(args):
     sync_presence_definitions(api_client)
     sync_queues(api_client)
 
-    sync_management_units(api_client, config)
+    #sync_management_units(api_client, config)
     sync_conversations(api_client, config)
-    sync_user_state(api_client, config)
+    #sync_user_state(api_client, config)
 
     new_state = {
         'start_date': datetime.date.today().strftime('%Y-%m-%d')
