@@ -48,10 +48,10 @@ BASE_PURECLOUD_API_HOST = 'https://api.{domain}'
 DEFAULT_SCHEDULE_LOOKAHEAD_WEEKS = 5
 
 REQUIRED_CONFIG_KEYS = [
-    'start_date',
-    'domain',
-    'client_id',
-    'client_secret',
+    #'start_date',
+    #'domain',
+    #'client_id',
+    #'client_secret',
 ]
 
 def giveup(error):
