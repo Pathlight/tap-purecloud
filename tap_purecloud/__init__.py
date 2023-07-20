@@ -756,13 +756,13 @@ def do_sync(args):
     
     # https://developer.genesys.cloud/devapps/sdk/docexplorer/purecloudpython/
     sync_users(api_client)
-    #sync_groups(api_client)
-    #sync_locations(api_client)
-    #sync_presence_definitions(api_client)
-    #sync_queues(api_client)
+    sync_groups(api_client)
+    sync_locations(api_client)
+    sync_presence_definitions(api_client)
+    sync_queues(api_client)
 
     #sync_management_units(api_client, config)
-    #sync_conversations(api_client, config)
+    sync_conversations(api_client, config)
     #sync_user_state(api_client, config)
 
     new_state = {
