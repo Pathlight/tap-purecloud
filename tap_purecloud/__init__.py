@@ -732,22 +732,24 @@ def do_sync(args):
     # grab start date from state file. If not found
     # default to value in config file
 
-    if 'start_date' in state:
-        start_date = parse_to_date(state['start_date'])
-    else:
-        start_date = parse_to_date(config['start_date'])
+    #if 'start_date' in state:
+    #    start_date = parse_to_date(state['start_date'])
+    #else:
+    #    start_date = parse_to_date(config['start_date'])
+
+    start_date = os.environ['GENESYS_STARTDATE']
     
     # Use a different key since mutating values can be hard to track
     config['_sync_date'] = start_date
 
-    api_host = f"https://api.{config['domain']}"
+    api_host = f"https://api.{os.environ['GENESYS_DOMAIN']}"
     api_client = ApiClient(host=api_host)
 
     # Sets the access_token in the api_client
     logger.info("Getting access token")
     api_client = api_client.get_client_credentials_token(
-        client_id=config['client_id'],
-        client_secret=config['client_secret']
+        client_id=os.environ['GENESYS_CLIENTID'],
+        client_secret=os.environ['GENESYS_CLIENTSECRET']
     )
 
     logger.info(f"Successfully got access token. Starting sync from {start_date}")

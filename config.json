@@ -1,0 +1,7 @@
+{
+    "domain": "This is just a dirty placeholder",
+    "client_id": "All configs are accessed from env variables",
+    "client_secret": "",
+    "start_date": "",
+    "schedule_lookahead_weeks": ""
+}
