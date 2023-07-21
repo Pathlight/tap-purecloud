@@ -1,17 +1,225 @@
 {
     "type": "object",
     "properties": {
-        "email": {
-            "type": "string"
-        },
         "id": {
-            "type": "string"
+            "type": ["null", "string"]
         },
         "name": {
-            "type": "string"
+            "type": ["null", "string"]
+        },
+        "division": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": ["null", "string"]
+                },
+                "name": {
+                    "type": ["null", "string"]
+                },
+                "self_uri": {
+                    "type": ["null", "string"]
+                }
+            },
+        },
+        "chat": {
+            "type": "object",
+            "properties": {
+                "jabber_id": {
+                    "type": ["null", "string"]
+                }
+            },
+        },
+        "department": {
+            "type": ["null", "string"]
+        },
+        "email": {
+            "type": ["null", "string"]
+        },
+        "primary_contact_info": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": ["null", "string"]
+                    },
+                    "display": {
+                        "type": ["null", "string"]
+                    },
+                    "media_type": {
+                        "type": ["null", "string"]
+                    },
+                    "type": {
+                        "type": ["null", "string"]
+                    },
+                    "extension": {
+                        "type": ["null", "string"]
+                    },
+                    "country_code": {
+                        "type": ["null", "string"]
+                    },
+                    "integration": {
+                        "type": ["null", "string"]
+                    }
+                },
+            }
+        },
+        "addresses": {
+            "type": "array"
+        },
+        "state": {
+            "type": ["null", "string"]
+        },
+        "title": {
+            "type": ["null", "string"]
         },
         "username": {
-            "type": "string"
+            "type": ["null", "string"]
+        },
+        "manager": {
+            "type": ["null", "string"]
+        },
+        "images": {
+            "type": ["null", "string"]
+        },
+        "version": {
+            "type": "integer"
+        },
+        "certifications": {
+            "type": ["null", "string"]
+        },
+        "biography": {
+            "type": ["null", "string"]
+        },
+        "employer_info": {
+            "type": ["null", "string"]
+        },
+        "routing_status": {
+            "type": ["null", "string"]
+        },
+        "presence": {
+            "type": ["null", "string"]
+        },
+        "integration_presence": {
+            "type": ["null", "string"]
+        },
+        "conversation_summary": {
+            "type": ["null", "string"]
+        },
+        "out_of_office": {
+            "type": ["null", "string"]
+        },
+        "geolocation": {
+            "type": ["null", "string"]
+        },
+        "station": {
+            "type": ["null", "string"]
+        },
+        "authorization": {
+            "type": ["null", "string"]
+        },
+        "profile_skills": {
+            "type": ["null", "string"]
+        },
+        "locations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": ["null", "string"]
+                    },
+                    "floorplan_id": {
+                        "type": ["null", "string"]
+                    },
+                    "coordinates": {
+                        "type": ["null", "string"]
+                    },
+                    "notes": {
+                        "type": ["null", "string"]
+                    },
+                    "location_definition": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": ["null", "string"]
+                            },
+                            "name": {
+                                "type": ["null", "string"]
+                            },
+                            "contact_user": {
+                                "type": ["null", "string"]
+                            },
+                            "emergency_number": {
+                                "type": ["null", "string"]
+                            },
+                            "address": {
+                                "type": ["null", "string"]
+                            },
+                            "state": {
+                                "type": ["null", "string"]
+                            },
+                            "notes": {
+                                "type": ["null", "string"]
+                            },
+                            "version": {
+                                "type": ["null", "string"]
+                            },
+                            "path": {
+                                "type": ["null", "string"]
+                            },
+                            "profile_image": {
+                                "type": ["null", "string"]
+                            },
+                            "floorplan_image": {
+                                "type": ["null", "string"]
+                            },
+                            "address_verification_details": {
+                                "type": ["null", "string"]
+                            },
+                            "address_verified": {
+                                "type": ["null", "string"]
+                            },
+                            "address_stored": {
+                                "type": ["null", "string"]
+                            },
+                            "images": {
+                                "type": ["null", "string"]
+                            },
+                            "self_uri": {
+                                "type": ["null", "string"]
+                            }
+                        },
+                    }
+                },
+            }
+        },
+        "groups": {
+            "type": ["null", "string"]
+        },
+        "team": {
+            "type": ["null", "string"]
+        },
+        "skills": {
+            "type": ["null", "string"]
+        },
+        "languages": {
+            "type": ["null", "string"]
+        },
+        "acd_auto_answer": {
+            "type": ["null", "string"]
+        },
+        "language_preference": {
+            "type": ["null", "string"]
+        },
+        "last_token_issued": {
+            "type": ["null", "string"]
+        },
+        "date_last_login": {
+            "type": ["null", "string"]
+        },
+        "self_uri": {
+            "type": ["null", "string"]
         }
-    }
+    },
 }
