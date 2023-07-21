@@ -208,7 +208,10 @@ user = {
                         "type": ["null", "string"]
                     },
                     "coordinates": {
-                        "type": ["null", "string"]
+                        "oneOf": [
+                            {"type": "null" },
+                            {"type": "object", "additionalProperties": false }
+                        ]
                     },
                     "notes": {
                         "type": ["null", "string"]
