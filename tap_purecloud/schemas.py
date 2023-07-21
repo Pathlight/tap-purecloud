@@ -285,7 +285,7 @@ user = {
         "self_uri": {
             "type": ["null", "string"]
         }
-    },
+    }
 }
 
 group = {
