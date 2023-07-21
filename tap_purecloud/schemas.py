@@ -144,7 +144,18 @@ user = {
             "type": ["null", "string"]
         },
         "images": {
-            "type": ["null", "string"]
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "resolution": {
+                        "type": ["null", "string"]
+                    },
+                    "image_uri": {
+                        "type": ["null", "string"]
+                    }
+                }
+            }
         },
         "version": {
             "type": ["null", "integer"]
