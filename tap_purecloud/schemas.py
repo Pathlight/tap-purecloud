@@ -83,7 +83,7 @@ user = {
                 "self_uri": {
                     "type": ["null", "string"]
                 }
-            },
+            }
         },
         "chat": {
             "type": "object",
@@ -91,7 +91,7 @@ user = {
                 "jabber_id": {
                     "type": ["null", "string"]
                 }
-            },
+            }
         },
         "department": {
             "type": ["null", "string"]
@@ -125,7 +125,7 @@ user = {
                     "integration": {
                         "type": ["null", "string"]
                     }
-                },
+                }
             }
         },
         "addresses": {
@@ -253,9 +253,9 @@ user = {
                             "self_uri": {
                                 "type": ["null", "string"]
                             }
-                        },
+                        }
                     }
-                },
+                }
             }
         },
         "groups": {

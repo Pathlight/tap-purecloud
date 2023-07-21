@@ -19,7 +19,7 @@
                 "self_uri": {
                     "type": ["null", "string"]
                 }
-            },
+            }
         },
         "chat": {
             "type": "object",
@@ -27,7 +27,7 @@
                 "jabber_id": {
                     "type": ["null", "string"]
                 }
-            },
+            }
         },
         "department": {
             "type": ["null", "string"]
@@ -61,7 +61,7 @@
                     "integration": {
                         "type": ["null", "string"]
                     }
-                },
+                }
             }
         },
         "addresses": {
@@ -189,9 +189,9 @@
                             "self_uri": {
                                 "type": ["null", "string"]
                             }
-                        },
+                        }
                     }
-                },
+                }
             }
         },
         "groups": {
