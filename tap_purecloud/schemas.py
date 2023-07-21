@@ -144,7 +144,7 @@ user = {
             "type": ["null", "string"]
         },
         "images": {
-            "type": "array",
+            "type": ["null", "array"],
             "items": {
                 "type": "object",
                 "properties": {
