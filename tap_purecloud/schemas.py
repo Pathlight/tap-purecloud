@@ -210,7 +210,7 @@ user = {
                     "coordinates": {
                         "oneOf": [
                             {"type": "null" },
-                            {"type": "object", "additionalProperties": false }
+                            {"type": "object", "additionalProperties": False }
                         ]
                     },
                     "notes": {
