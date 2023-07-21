@@ -100,7 +100,7 @@ user = {
             "type": ["null", "string"]
         },
         "primary_contact_info": {
-            "type": "array",
+            "type": ["null", "array"],
             "items": {
                 "type": "object",
                 "properties": {
@@ -129,7 +129,7 @@ user = {
             }
         },
         "addresses": {
-            "type": "array"
+            "type": ["null", "array"]
         },
         "state": {
             "type": ["null", "string"]
@@ -197,7 +197,7 @@ user = {
             "type": ["null", "string"]
         },
         "locations": {
-            "type": "array",
+            "type": ["null", "array"],
             "items": {
                 "type": "object",
                 "properties": {
