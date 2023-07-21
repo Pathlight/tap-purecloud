@@ -147,7 +147,7 @@ user = {
             "type": ["null", "string"]
         },
         "version": {
-            "type": "integer"
+            "type": ["null", "integer"]
         },
         "certifications": {
             "type": ["null", "string"]
@@ -271,7 +271,7 @@ user = {
             "type": ["null", "string"]
         },
         "acd_auto_answer": {
-            "type": ["null", "string"]
+            "type": ["null", "boolean"]
         },
         "language_preference": {
             "type": ["null", "string"]
