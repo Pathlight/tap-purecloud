@@ -12,6 +12,8 @@ import hashlib
 import collections
 import os
 
+from loguru import logger
+
 from typing import Any, Dict, Tuple, Union
 from dateutil.parser import parse as parse_datetime
 
@@ -787,6 +789,10 @@ def load_schemas() -> dict:
         path = os.path.join(get_abs_path('schemas'), filename)
         file_raw = filename.replace('.json', '')
         with open(path) as file:
+            print("+++++++++++++++++++++++++++++++++++++++++++++++")
+            print(file)
+            logging.debug("+++++++++++++++++++++++++++++++++++++++++++++++")
+            logging.debug(file)
             schemas[file_raw] = Schema.from_dict(json.load(file))
     return schemas
 
